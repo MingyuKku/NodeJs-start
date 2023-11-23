@@ -7,7 +7,7 @@ const cookieParser = require('cookie-parser');
 const { auth } = require('./middleware/auth');  
 
 const app = express();
-const port = 5000;
+
 
 // application/x-www-form-urlencoded
 app.use(express.urlencoded({extended: true}));
@@ -23,9 +23,13 @@ mongoose.connect(config.mongoURI)
 
 
 app.get('/', (req, res) => {
-    res.send('Hello World!');
+    return res.send('Hello World!');
 });
 
+app.get('/api/hello', (req, res) => {
+    console.log('요청은 들어오나')
+    return res.send('안녕하세요!');
+});
 
 app.post('/register', async (req, res) => {
 
@@ -126,6 +130,7 @@ app.get('/api/users/auth', auth, (req, res) => {
    })
 })
 
+const port = 5000;
 app.listen(port, () => {
     console.log(`${port} 포트로 잘 연결됐어!`);
 })
