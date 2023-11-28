@@ -123,5 +123,8 @@ app.get('/api/users/auth', auth, (req, res) => {
 });
 
 
-const port = 5000;
-app.listen(port);
+// const port = 5000;
+const port = process.env.PORT || 5000;
+app.listen(port, () => {
+    console.log(`서버 연결 ${port} 포트`)
+});
